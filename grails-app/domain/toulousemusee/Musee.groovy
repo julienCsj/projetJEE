@@ -1,8 +1,14 @@
 package toulousemusee
 
-/**
- * Created by julien on 08/04/15.
- */
 class Musee {
+    String nom
+    String horairesOuverture
+    String telephone
+    boolean accesMetro
+    boolean accesBus
+    Adresse adresse
 
+    static constraints = {
+       telephone size: 10..14, blank: false
+    }
 }
