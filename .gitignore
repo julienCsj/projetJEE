@@ -32,3 +32,5 @@ target
 *.iml
 *.iws
 *.ipr
+application.properties
+grailsw
