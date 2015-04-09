@@ -27,7 +27,7 @@ class MuseeService {
             }
             if (codePostal) {
                 adresse {
-                   eq 'codePostal', codePostal
+                    eq 'codePostal', codePostal
                 }
             }
             if (rue) {
