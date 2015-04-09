@@ -1,16 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: julien
-  Date: 09/04/15
-  Time: 16:20
---%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+    <meta name="layout" content="main">
 </head>
 <body>
-
+<h4>Résultat de la recherche</h4>
+<ul>
+<g:each var="musee" in="${museeInstanceList}">
+    <li>${musee}</li>
+</g:each>
+</ul>
 </body>
 </html>

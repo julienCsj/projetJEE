@@ -15,4 +15,20 @@ class Musee {
         telephone size: 10..14
         accesMetro nullable: true
     }
+
+
+    @Override
+    public String toString() {
+        return "Musee{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", horairesOuverture='" + horairesOuverture + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", accesMetro='" + accesMetro + '\'' +
+                ", accesBus='" + accesBus + '\'' +
+                ", adresse=" + adresse +
+                ", gestionnaire=" + gestionnaire +
+                ", version=" + version +
+                '}';
+    }
 }
