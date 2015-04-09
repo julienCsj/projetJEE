@@ -5,13 +5,14 @@ class Musee {
     String nom
     String horairesOuverture
     String telephone
-    boolean accesMetro
-    boolean accesBus
+    String accesMetro
+    String accesBus
 
     Adresse adresse
     Gestionnaire gestionnaire
 
     static constraints = {
-       telephone size: 10..14, blank: false
+        telephone size: 10..14
+        accesMetro nullable: true
     }
 }
