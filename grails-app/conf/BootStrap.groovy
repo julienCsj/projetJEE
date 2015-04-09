@@ -1,4 +1,5 @@
 import toulousemusee.JeuTestCsvService
+import toulousemusee.Musee
 
 class BootStrap {
 
