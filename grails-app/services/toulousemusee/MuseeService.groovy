@@ -10,10 +10,10 @@ class MuseeService {
     }
 
     def insertOrUpdateMusee(Musee musee, Gestionnaire gestionnaire, Adresse adresse) {
-        /*adresse.save(flush: true)
+       /* adresse.save(flush: true)
         gestionnaire.save(flush: true)
         musee.gestionnaire = gestionnaire
-        musee.adresse = adresse*/
+        musee.adresse = adress*/
         musee.save(flush: true)
         musee
     }
