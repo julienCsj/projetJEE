@@ -13,7 +13,6 @@ class Adresse {
 
     @Override
     public String toString() {
-        return '''$numero $rue
-                $codePostal $ville'''
+        return numero+" "+rue+" "+codePostal+" "+ville
     }
 }

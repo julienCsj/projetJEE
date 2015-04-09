@@ -32,20 +32,20 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${museeInstance?.accesBus}">
-				<li class="fieldcontain">
-					<span id="accesBus-label" class="property-label"><g:message code="musee.accesBus.label" default="Acces Bus" /></span>
-					
-						<span class="property-value" aria-labelledby="accesBus-label"><g:formatBoolean boolean="${museeInstance?.accesBus}" /></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${museeInstance?.accesMetro}">
 				<li class="fieldcontain">
 					<span id="accesMetro-label" class="property-label"><g:message code="musee.accesMetro.label" default="Acces Metro" /></span>
 					
-						<span class="property-value" aria-labelledby="accesMetro-label"><g:formatBoolean boolean="${museeInstance?.accesMetro}" /></span>
+						<span class="property-value" aria-labelledby="accesMetro-label"><g:fieldValue bean="${museeInstance}" field="accesMetro"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${museeInstance?.accesBus}">
+				<li class="fieldcontain">
+					<span id="accesBus-label" class="property-label"><g:message code="musee.accesBus.label" default="Acces Bus" /></span>
+					
+						<span class="property-value" aria-labelledby="accesBus-label"><g:fieldValue bean="${museeInstance}" field="accesBus"/></span>
 					
 				</li>
 				</g:if>

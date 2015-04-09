@@ -26,9 +26,9 @@
 					
 						<g:sortableColumn property="telephone" title="${message(code: 'musee.telephone.label', default: 'Telephone')}" />
 					
-						<g:sortableColumn property="accesBus" title="${message(code: 'musee.accesBus.label', default: 'Acces Bus')}" />
-					
 						<g:sortableColumn property="accesMetro" title="${message(code: 'musee.accesMetro.label', default: 'Acces Metro')}" />
+					
+						<g:sortableColumn property="accesBus" title="${message(code: 'musee.accesBus.label', default: 'Acces Bus')}" />
 					
 						<th><g:message code="musee.adresse.label" default="Adresse" /></th>
 					
@@ -44,9 +44,9 @@
 					
 						<td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "telephone")}</g:link></td>
 					
-						<td><g:formatBoolean boolean="${museeInstance.accesBus}" /></td>
+						<td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
 					
-						<td><g:formatBoolean boolean="${museeInstance.accesMetro}" /></td>
+						<td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
 					
 						<td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
 					

@@ -11,21 +11,21 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'accesBus', 'error')} ">
-	<label for="accesBus">
-		<g:message code="musee.accesBus.label" default="Acces Bus" />
-		
-	</label>
-	<g:checkBox name="accesBus" value="${museeInstance?.accesBus}" />
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'accesMetro', 'error')} ">
 	<label for="accesMetro">
 		<g:message code="musee.accesMetro.label" default="Acces Metro" />
 		
 	</label>
-	<g:checkBox name="accesMetro" value="${museeInstance?.accesMetro}" />
+	<g:textField name="accesMetro" value="${museeInstance?.accesMetro}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'accesBus', 'error')} required">
+	<label for="accesBus">
+		<g:message code="musee.accesBus.label" default="Acces Bus" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="accesBus" required="" value="${museeInstance?.accesBus}"/>
 
 </div>
 

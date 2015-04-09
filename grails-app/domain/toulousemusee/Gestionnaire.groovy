@@ -10,6 +10,6 @@ class Gestionnaire {
 
     @Override
     public String toString() {
-        return '''$nom'''
+        return nom
     }
 }
