@@ -2,7 +2,7 @@ package toulousemusee
 
 class Adresse {
 
-    int numero
+    String numero
     String rue
     int codePostal
     String ville
@@ -11,11 +11,9 @@ class Adresse {
 
     }
 
-
     @Override
     public String toString() {
         return '''$numero $rue
-                $codePostal $ville
-                '''
+                $codePostal $ville'''
     }
 }
