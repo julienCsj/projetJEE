@@ -8,11 +8,19 @@ import spock.lang.*
 @Mock(Musee)
 class MuseeControllerSpec extends Specification {
 
+    def setup() {
+        controller.museeService = new MuseeService()
+    }
+
     def populateValidParams(params) {
         assert params != null
 
-        params[]
-
+        params['nom'] = "Un musée d'art moderne"
+        params['horairesOuverture'] = "Tous les jours de 8h à 22h. Non stop le week end."
+        params['telephone'] = "0561522082"
+        params['accesMetro'] = true
+        params['accesBus'] = true
+        params['adresse'] = new Adresse(numero:12, rue:"Rue du 18 mai 1962", codePostal:31400, ville:"Toulouse")
     }
 
     void "Test the index action returns the correct model"() {
