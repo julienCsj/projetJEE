@@ -1,6 +1,6 @@
 package toulousemusee
 
-import grails.transaction.Transactional
+import org.springframework.transaction.annotation.Transactional
 
 @Transactional
 class MuseeService {
@@ -10,11 +10,11 @@ class MuseeService {
     }
 
     def insertOrUpdateMusee(Musee musee, Gestionnaire gestionnaire, Adresse adresse) {
-        adresse.save()
-        gestionnaire.save()
+        /*adresse.save(flush: true)
+        gestionnaire.save(flush: true)
         musee.gestionnaire = gestionnaire
-        musee.adresse = adresse
-        musee.save()
+        musee.adresse = adresse*/
+        musee.save(flush: true)
         musee
     }
 

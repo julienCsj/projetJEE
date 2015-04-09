@@ -5,12 +5,18 @@ import grails.test.mixin.*
 import spock.lang.*
 
 @TestFor(MuseeController)
-@Mock(Musee)
+@Mock([Musee, Gestionnaire, Adresse])
 class MuseeControllerSpec extends Specification {
 
+    Gestionnaire gestionnaire
+    Adresse adresse
+
     def setup() {
+        gestionnaire = new Gestionnaire(nom:"Michel Dupont").save(failOnError: true)
+        adresse = new Adresse(numero:12, rue:"Rue du 18 mai 1962", codePostal:31400, ville:"Toulouse").save(failOnError: true)
         controller.museeService = new MuseeService()
     }
+
 
     def populateValidParams(params) {
         assert params != null
@@ -18,9 +24,10 @@ class MuseeControllerSpec extends Specification {
         params['nom'] = "Un musée d'art moderne"
         params['horairesOuverture'] = "Tous les jours de 8h à 22h. Non stop le week end."
         params['telephone'] = "0561522082"
-        params['accesMetro'] = true
-        params['accesBus'] = true
-        params['adresse'] = new Adresse(numero:12, rue:"Rue du 18 mai 1962", codePostal:31400, ville:"Toulouse")
+        params['accesMetro'] = "oui"
+        params['accesBus'] = "oui"
+        params['gestionnaire'] = gestionnaire
+        params['adresse'] = adresse
     }
 
     void "Test the index action returns the correct model"() {

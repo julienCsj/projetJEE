@@ -63,7 +63,7 @@ class MuseeController {
             return
         }
 
-        museeService.insertOrUpdateMusee(museeInstance)
+        museeService.insertOrUpdateMusee(museeInstance, museeInstance.gestionnaire, museeInstance.adresse)
 
         request.withFormat {
             form multipartForm {
