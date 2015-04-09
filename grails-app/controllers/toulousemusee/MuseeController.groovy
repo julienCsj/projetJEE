@@ -10,6 +10,20 @@ class MuseeController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def museeService
 
+    def getSearchForm() {
+        def codePostalList = Adresse.getAll()
+        render(view: 'index', model: [codePostalList: codePostalList])
+    }
+
+    def doSearchMusee() {
+        String nom = params.nom
+        Integer codePostal = Integer.getInteger(params.codePostal)
+        String rue = params.rue
+
+        def museeList = museeService.searchMusees(nom, codePostal, rue)
+        render(view: 'listeMusee', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()])
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Musee.list(params), model: [museeInstanceCount: Musee.count()]
