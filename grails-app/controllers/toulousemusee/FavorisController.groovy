@@ -13,6 +13,8 @@ class FavorisController {
             session['favoris'] = new ArrayList<Musee>()
         }*/
         favorisService.ajouterAuxFavoris(musee)
+
+        render(view: 'listeMusee', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()])
     }
 
     def supprimerFavoris(Musee musee) {
@@ -22,5 +24,7 @@ class FavorisController {
             session['favoris'] = new ArrayList<Musee>()
         }*/
         favorisService.retirerDesFavoris(musee)
+
+        render(view: 'listeMusee', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()])
     }
 }
