@@ -22,7 +22,8 @@ class MuseeController {
         String rue = params.rue
 
         def museeList = museeService.searchMusees(nom, codePostal, rue)
-        render(view: 'listeMusee', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()])
+        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size(),
+                                      nom: nom, codePostal: codePostal, rue: rue])
     }
 
     def index(Integer max) {
