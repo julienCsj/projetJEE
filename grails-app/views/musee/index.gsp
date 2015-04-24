@@ -52,6 +52,7 @@
                 </div>
 
             </div>
+            <p>${musee.adresse}</p>
             <p>${musee.horairesOuverture}</p>
             <div class="row">
                 <div class="col-xs-4 col-sm-4">

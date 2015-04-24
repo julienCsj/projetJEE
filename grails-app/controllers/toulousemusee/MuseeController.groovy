@@ -12,22 +12,24 @@ class MuseeController {
     def museeService
 
     def getSearchForm() {
-        def codePostalList = Adresse.getAll()
+        def codePostalList = Adresse.list().unique { it.codePostal }
+        print "Liste des codes : "+codePostalList
         render(view: 'index', model: [codePostalList: codePostalList])
     }
 
     def doSearchMusee(Integer max) {
         String nom = params.nom
-        Integer codePostal = Integer.getInteger(params.codePostal)
+        Integer cp = params.int("codePostal")
         String rue = params.rue
-        def codePostalList = Adresse.getAll()
+
+        def codePostalList = Adresse.list().unique { it.codePostal }
         params.max = Math.min(max ?: 5, 100)
 
+        def museeList = museeService.searchMusees(nom, cp, rue)
 
-        def museeList = museeService.searchMusees(nom, codePostal, rue)
         render(view: 'index', model: [museeInstanceList: museeList.drop(params.int('offset')?:0).take(params.int('max')),
                                       museeInstanceCount: museeList.size(),
-                                      nom: nom, codePostal: codePostal, rue: rue,
+                                      nom: nom, codePostal: cp, rue: rue,
                                       codePostalList: codePostalList, params: params])
     }
 

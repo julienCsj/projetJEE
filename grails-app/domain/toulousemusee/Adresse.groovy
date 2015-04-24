@@ -4,7 +4,7 @@ class Adresse {
 
     String numero
     String rue
-    int codePostal
+    Integer codePostal
     String ville
 
     static constraints = {
