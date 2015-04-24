@@ -12,20 +12,24 @@
         </div>
 
         <h4>Rechercher un musée</h4>
-        <g:form name="recherche" class="form-inline"  url="[controller:'musee',action:'doSearchMusee']">
+        <g:form name="recherche" class="form-inline" method="get"  url="[controller:'musee',action:'doSearchMusee']">
             <div class="form-group col-lg-3">
-                <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du musée" value="">
+                <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du musée" value="${nom}">
             </div>
             <div class="form-group col-lg-3">
-                <select class="form-control" placeholder="Selectionner le code postal" id="codePostal" name="codePostal">
-                    <option value="">Selectionner le code postal</option>
-                    <g:each var="adresse" in="${codePostalList}">
-                       <option value="${adresse.codePostal}">${adresse.codePostal}</option>
-                    </g:each>
-                </select>
+                <g:select id="type"
+                          name="codePostal"
+                          value="${codePostal}"
+                          noSelection="${['null':'Choisir un code postal...']}"
+                          from='${codePostalList}'
+                          optionKey="id" optionValue="codePostal"
+                          keys="${codePostalList?.codePostal}"
+                          class="form-control">
+
+                </g:select>
             </div>
             <div class="form-group col-lg-3">
-                <input type="text" class="form-control" name="rue" id="rue" placeholder="Adresse du musée" value="">
+                <input type="text" class="form-control" name="rue" id="rue" placeholder="Adresse du musée" value="${rue}">
             </div>
             <button type="submit" class="btn btn-default col-lg-3">Rechercher</button>
         </g:form>
@@ -63,6 +67,9 @@
             </div>
         </div>
     </g:each>
-        </g:if>
+        <g:paginate next="Suivant" prev="Précedant"
+                    maxsteps="5" controller="musee"
+                    action="doSearchMusee" total="${museeInstanceCount}" params="${params}"/>
+    </g:if>
     </body>
 </html>

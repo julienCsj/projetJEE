@@ -16,14 +16,19 @@ class MuseeController {
         render(view: 'index', model: [codePostalList: codePostalList])
     }
 
-    def doSearchMusee() {
+    def doSearchMusee(Integer max) {
         String nom = params.nom
         Integer codePostal = Integer.getInteger(params.codePostal)
         String rue = params.rue
+        def codePostalList = Adresse.getAll()
+        params.max = Math.min(max ?: 5, 100)
+
 
         def museeList = museeService.searchMusees(nom, codePostal, rue)
-        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size(),
-                                      nom: nom, codePostal: codePostal, rue: rue])
+        render(view: 'index', model: [museeInstanceList: museeList.drop(params.int('offset')?:0).take(params.int('max')),
+                                      museeInstanceCount: museeList.size(),
+                                      nom: nom, codePostal: codePostal, rue: rue,
+                                      codePostalList: codePostalList, params: params])
     }
 
     def index(Integer max) {

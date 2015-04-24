@@ -67,7 +67,7 @@
     <hr>
 
     <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; Elliot Felgines & Julien Custoja</p>
     </footer>
 
 </div><!--/.container-->
