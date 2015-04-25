@@ -15,7 +15,7 @@ class DemandeVisiteSpec extends Specification {
 
         given: "une demande de visite initialise correctement"
         DemandeVisite dv = new DemandeVisite(code: 12, dateDebutPeriode: new Date(12, 04, 2015),
-                dateFinPeriode: new Date(15, 04, 2015), nbPersonnes: 12, statut: "Le statut de la visite")
+                dateFinPeriode: new Date(15, 04, 2015), nbPersonnes: 5, statut: DemandeVisite.Statut.EN_COURS)
 
         expect: "la demande de visite est valide"
         dv.validate() == true
@@ -27,7 +27,7 @@ class DemandeVisiteSpec extends Specification {
 
         given: "une demande de visite invalide"
         DemandeVisite dv = new DemandeVisite(code: 12, dateDebutPeriode: new Date(12, 04, 2015),
-                dateFinPeriode: new Date(15, 04, 2015), nbPersonnes: 0, statut: "Le statut de la visite")
+                dateFinPeriode: new Date(15, 04, 2015), nbPersonnes: 0, statut: DemandeVisite.Statut.REFUSE)
 
         expect: "la demande de visite est invalide"
         dv.validate() == false

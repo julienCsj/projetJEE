@@ -10,9 +10,4 @@ class Adresse {
     static constraints = {
 
     }
-
-    @Override
-    public String toString() {
-        return "$numero $rue $codePostal $ville"
-    }
 }
