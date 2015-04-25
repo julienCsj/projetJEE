@@ -61,6 +61,7 @@
                             <input type="hidden" id="codePostalF" name="codePostal" value="${codePostal}">
                             <input type="submit" class="btn btn-danger btn-sm pull-right" value="Supprimer" />
                         </g:form>
+                        <g:link class="btn btn-success btn-sm pull-right" controller="demandeVisiteMusee" action="getForm" id="${favoris.id}">Demande de visite</g:link>
                     </div>
                 </g:each>
             </div>
