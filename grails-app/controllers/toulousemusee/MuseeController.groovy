@@ -32,6 +32,7 @@ class MuseeController {
         def codePostalList = Adresse.list().unique { it.codePostal }
         params.max = Math.min(max ?: 5, 100)
 
+
         def museeList = museeService.searchMusees(nom, cp, rue)
 
         render(view: 'index', model: [museeInstanceList: museeList.drop(params.int('offset')?:0).take(params.int('max')),
@@ -134,7 +135,7 @@ class MuseeController {
 
     // GESTION DES FAVORIS
     def ajouterFavoris = {
-        favorisService.ajouterAuxFavoris(params.telephone)
+        favorisService.ajouterAuxFavoris(params.id)
 
         String nom = params.nom
         String codePostal = params.codePostal
@@ -146,7 +147,7 @@ class MuseeController {
     }
 
     def supprimerFavoris = {
-        favorisService.retirerDesFavoris(params.telephone)
+        favorisService.retirerDesFavoris(params.id)
 
         if(params.index.equals("1")) {
             redirect(action: "getSearchForm")

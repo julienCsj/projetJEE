@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-xs-1 col-sm-1">
                     <g:form name="favoris_form" method="post" url="[controller:'musee', action:'ajouterFavoris']">
-                        <input type="hidden" id="telephoneF" name="telephone" value="${musee.telephone}" />
+                        <input type="hidden" id="id" name="id" value="${musee.id}" />
                         <input type="hidden" id="nomF" name="nom" value="${nom}">
                         <input type="hidden" id="rueF" name="rue" value="${rue}">
                         <input type="hidden" id="codePostalF" name="codePostal" value="${codePostal}">

@@ -9,13 +9,15 @@ class FavorisService {
 
     def listeFavoris = new ArrayList<Musee>();
 
-    def ajouterAuxFavoris(String telephone) {
-        def musee = Musee.findByTelephone(telephone)
-        if (! listeFavoris.find()?.getTelephone().equals(telephone))
+    def ajouterAuxFavoris(String id) {
+        Musee musee = Musee.findById(id)
+        print "********* MUSEE = "+musee
+        if (! listeFavoris.find()?.getId().equals(id))
             listeFavoris.add(musee)
     }
 
-    def retirerDesFavoris(String telephone) {
-        listeFavoris.removeAll {it.telephone == telephone};
+    def retirerDesFavoris(String id) {
+        Musee musee = Musee.findById(id)
+        listeFavoris.removeAll {it.id == id};
     }
 }
