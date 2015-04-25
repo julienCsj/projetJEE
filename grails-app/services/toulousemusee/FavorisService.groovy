@@ -7,17 +7,17 @@ class FavorisService {
 
     static scope = "session"
 
-    def listeFavoris = new ArrayList<Musee>();
+    def listeFavoris = new HashMap<Integer, Musee>();
 
-    def ajouterAuxFavoris(String id) {
+    def ajouterAuxFavoris(int id) {
         Musee musee = Musee.findById(id)
         print "********* MUSEE = "+musee
-        if (! listeFavoris.find()?.getId().equals(id))
-            listeFavoris.add(musee)
+        if(musee)
+            listeFavoris.put(id, musee)
+
     }
 
-    def retirerDesFavoris(String id) {
-        Musee musee = Musee.findById(id)
-        listeFavoris.removeAll {it.id == id};
+    def retirerDesFavoris(int id) {
+        listeFavoris.remove(id)
     }
 }

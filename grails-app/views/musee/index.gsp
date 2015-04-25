@@ -49,7 +49,7 @@
                         <input type="hidden" id="nomF" name="nom" value="${nom}">
                         <input type="hidden" id="rueF" name="rue" value="${rue}">
                         <input type="hidden" id="codePostalF" name="codePostal" value="${codePostal}">
-                        <input type="submit" class="btn btn-success btn-sm pull-right" value="Ajouter aux favoris" />
+                        <input type="submit" class="btn btn-success btn-sm pull-right <g:if test="${favorisList.keySet().contains(musee.id)}">disabled</g:if>" value="Ajouter aux favoris" />
                     </g:form>
                 </div>
 

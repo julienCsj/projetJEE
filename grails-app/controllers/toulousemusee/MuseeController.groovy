@@ -135,7 +135,7 @@ class MuseeController {
 
     // GESTION DES FAVORIS
     def ajouterFavoris = {
-        favorisService.ajouterAuxFavoris(params.id)
+        favorisService.ajouterAuxFavoris(params.int("id"))
 
         String nom = params.nom
         String codePostal = params.codePostal
@@ -147,7 +147,7 @@ class MuseeController {
     }
 
     def supprimerFavoris = {
-        favorisService.retirerDesFavoris(params.id)
+        favorisService.retirerDesFavoris(params.int("id"))
 
         if(params.index.equals("1")) {
             redirect(action: "getSearchForm")
