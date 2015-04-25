@@ -17,8 +17,10 @@ class MuseeController {
     // RECHERCHE DE MUSEES
     def getSearchForm() {
         def codePostalList = Adresse.list().unique { it.codePostal }
+        def favorisList = favorisService.listeFavoris
+
         print "Liste des codes : "+codePostalList
-        render(view: 'index', model: [codePostalList: codePostalList])
+        render(view: 'index', model: [codePostalList: codePostalList, favorisList: favorisList, index: "1"])
     }
 
     def doSearchMusee(Integer max) {
@@ -146,12 +148,17 @@ class MuseeController {
     def supprimerFavoris = {
         favorisService.retirerDesFavoris(params.telephone)
 
-        String nom = params.nom
-        String codePostal = params.codePostal
-        String rue = params.rue
-        if (codePostal.equals(""))
-            codePostal = "null";
+        if(params.index.equals("1")) {
+            redirect(action: "getSearchForm")
+        } else {
 
-        redirect(action: "doSearchMusee", params: [nom: nom, codePostal: codePostal, rue: rue])
+            String nom = params.nom
+            String codePostal = params.codePostal
+            String rue = params.rue
+            if (codePostal.equals(""))
+                codePostal = "null";
+
+            redirect(action: "doSearchMusee", params: [nom: nom, codePostal: codePostal, rue: rue])
+        }
     }
 }
