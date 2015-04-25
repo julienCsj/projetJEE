@@ -27,11 +27,14 @@ class MuseeController {
         String rue = params.rue
 
         def favorisList = favorisService.listeFavoris
+
         def codePostalList = Adresse.list().unique { it.codePostal }
         params.max = Math.min(max ?: 5, 100)
 
-
         def museeList = museeService.searchMusees(nom, cp, rue)
+
+        System.out.println(museeList.id.toString())
+        System.out.println(favorisList.keySet())
 
         render(view: 'index', model: [museeInstanceList: museeList.drop(params.int('offset')?:0).take(params.int('max')),
                                       museeInstanceCount: museeList.size(),
