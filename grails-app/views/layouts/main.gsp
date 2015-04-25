@@ -50,15 +50,18 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
             <h3>Musées préférés</h3>
-            <ul id="favoris" class="list-group">
+            <div id="favoris" class="well">
                 <g:each var="favoris" in="${favorisList}">
-                    <li class="list-group-item">
+                    <div>
                         ${favoris.nom}
                         <g:form name="favoris_form" method="post" url="[controller:'musee', action:'supprimerFavoris']">
                             <input type="hidden" id="telephone" name="telephone" value="${favoris.telephone}" />
+                            <input type="hidden" id="nomF" name="nom" value="${nom}">
+                            <input type="hidden" id="rueF" name="rue" value="${rue}">
+                            <input type="hidden" id="codePostalF" name="codePostal" value="${codePostal}">
                             <input type="submit" class="btn btn-danger btn-sm pull-right" value="Supprimer" />
                         </g:form>
-                    </li>
+                    </div>
                 </g:each>
             </div>
         </div><!--/.sidebar-offcanvas-->
