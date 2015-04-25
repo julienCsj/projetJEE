@@ -48,7 +48,23 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
             <h3>Musées préférés</h3>
+        <div id="favoris" class="list-group">
+            <g:each var="musee" in="${favorisList}">
+                <div class="list-group-item">
+                    ${musee.nom}
+                    <g:form name="favoris_form" method="post" url="[controller:'musee', action:'supprimerFavoris']">
+                        <input type="hidden" id="id" name="id" value="${musee.id}" />
+                        <input type="hidden" id="nomF" name="nom" value="${nom}">
+                        <input type="hidden" id="rueF" name="rue" value="${rue}">
+                        <input type="hidden" id="codePostalF" name="codePostal" value="${codePostal}">
+                        <input type="hidden" id="index" name="index" value="${index}">
+                        <input type="submit" class="btn btn-danger btn-sm pull-right" value="Supprimer" />
+                    </g:form>
+                    <g:link class="btn btn-success btn-sm pull-right" controller="demandeVisiteMusee" action="getForm" id="${favoris.id}">Demande de visite</g:link>
+                </div>
+            </g:each>
 
+        </div>
         </div><!--/.sidebar-offcanvas-->
     </div><!--/row-->
 
