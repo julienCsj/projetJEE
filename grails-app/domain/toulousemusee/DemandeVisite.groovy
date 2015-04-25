@@ -6,9 +6,13 @@ class DemandeVisite {
     Date dateDebutPeriode
     Date dateFinPeriode
     int nbPersonnes
-    String statut
+    Statut statut
 
     static constraints = {
         nbPersonnes range: 1..6
+    }
+
+    enum Statut {
+        EN_COURS, CONFIRME, REFUSE
     }
 }

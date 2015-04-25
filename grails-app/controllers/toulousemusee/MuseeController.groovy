@@ -18,8 +18,6 @@ class MuseeController {
     def getSearchForm() {
         def codePostalList = Adresse.list().unique { it.codePostal }
         def favorisList = favorisService.listeFavoris
-
-        print "Liste des codes : "+codePostalList
         render(view: 'index', model: [codePostalList: codePostalList, favorisList: favorisList, index: "1"])
     }
 
