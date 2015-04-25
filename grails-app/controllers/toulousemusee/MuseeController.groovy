@@ -8,30 +8,34 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class MuseeController {
 
+    static scope = "prototype"
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def museeService
     def favorisService
 
+    // RECHERCHE DE MUSEES
     def getSearchForm() {
-        def codePostalList = Adresse.getAll()
-
-        def listeFavoris = favorisService.listeFavoris
-
-        render(view: 'index', model: [codePostalList: codePostalList, favorisList: listeFavoris])
+        def codePostalList = Adresse.list().unique { it.codePostal }
+        print "Liste des codes : "+codePostalList
+        render(view: 'index', model: [codePostalList: codePostalList])
     }
 
-    def doSearchMusee() {
+    def doSearchMusee(Integer max) {
         String nom = params.nom
-        Integer codePostal = Integer.getInteger(params.codePostal)
+        Integer cp = params.int("codePostal")
         String rue = params.rue
 
+        def favorisList = favorisService.listeFavoris
+        def codePostalList = Adresse.list().unique { it.codePostal }
+        params.max = Math.min(max ?: 5, 100)
 
-        def listeFavoris = favorisService.listeFavoris
+        def museeList = museeService.searchMusees(nom, cp, rue)
 
-
-        def museeList = museeService.searchMusees(nom, codePostal, rue)
-        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size(),
-                                      nom: nom, codePostal: codePostal, rue: rue, favorisList: listeFavoris])
+        render(view: 'index', model: [museeInstanceList: museeList.drop(params.int('offset')?:0).take(params.int('max')),
+                                      museeInstanceCount: museeList.size(),
+                                      nom: nom, codePostal: cp, rue: rue,
+                                      codePostalList: codePostalList, favorisList: favorisList, params: params])
     }
 
     def index(Integer max) {
@@ -124,5 +128,30 @@ class MuseeController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    // GESTION DES FAVORIS
+    def ajouterFavoris = {
+        favorisService.ajouterAuxFavoris(params.telephone)
+
+        String nom = params.nom
+        String codePostal = params.codePostal
+        String rue = params.rue
+        if (codePostal.equals(""))
+            codePostal = "null";
+
+        redirect(action: "doSearchMusee", params: [nom: nom, codePostal: codePostal, rue: rue])
+    }
+
+    def supprimerFavoris = {
+        favorisService.retirerDesFavoris(params.telephone)
+
+        String nom = params.nom
+        String codePostal = params.codePostal
+        String rue = params.rue
+        if (codePostal.equals(""))
+            codePostal = "null";
+
+        redirect(action: "doSearchMusee", params: [nom: nom, codePostal: codePostal, rue: rue])
     }
 }

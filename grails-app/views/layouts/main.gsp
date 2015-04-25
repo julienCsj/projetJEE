@@ -54,10 +54,10 @@
                 <g:each var="favoris" in="${favorisList}">
                     <li class="list-group-item">
                         ${favoris.nom}
-                        <g:formRemote name="favoris_form" url="[controller:'favoris', action:'supprimerFavoris']">
+                        <g:form name="favoris_form" method="post" url="[controller:'musee', action:'supprimerFavoris']">
                             <input type="hidden" id="telephone" name="telephone" value="${favoris.telephone}" />
                             <input type="submit" class="btn btn-danger btn-sm pull-right" value="Supprimer" />
-                        </g:formRemote>
+                        </g:form>
                     </li>
                 </g:each>
             </div>
@@ -67,7 +67,7 @@
     <hr>
 
     <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; Elliot Felgines & Julien Custoja</p>
     </footer>
 
 </div><!--/.container-->
@@ -75,26 +75,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-    function modificationFavoris(response) {
-        var liste = document.getElementById("favoris");
-        var html = "";
-        response.forEach(function(favoris) {
-            html += '<li class="list-group-item">'
-            +favoris.nom
-            +'<g'
-            +':formRemote name="favoris_form" url="[controller:"favoris", action:"supprimerFavoris"]" onSuccess="modificationFavoris(data)">'
-            +'<input type="hidden" id="telephone" name="telephone" value="'+favoris.telephone+'" />'
-            +'<input type="submit" class="btn btn-danger btn-sm pull-right" value="Supprimer" />'
-            +'</g'
-            +':formRemote>'
-            +'</li>';
-            //console.log(entry);
-        });
-        liste.innerHTML = html;
-    }
-</script>
 
 </body>
 </html>

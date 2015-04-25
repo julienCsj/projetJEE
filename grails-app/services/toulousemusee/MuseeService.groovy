@@ -21,7 +21,9 @@ class MuseeService {
 
     List<Musee> searchMusees(String nom, Integer codePostal, String rue) {
         def criteria = Musee.createCriteria()
-        List<Musee> res = criteria.list {
+
+
+        List<Musee> res = criteria.list () {
             if (nom) {
                 like 'nom', "%${nom}%"
             }

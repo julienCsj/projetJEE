@@ -11,11 +11,11 @@ class FavorisService {
 
     def ajouterAuxFavoris(String telephone) {
         def musee = Musee.findByTelephone(telephone)
-        listeFavoris.contains(musee)?:listeFavoris.add(musee)
+        if (! listeFavoris.find()?.getTelephone().equals(telephone))
+            listeFavoris.add(musee)
     }
 
     def retirerDesFavoris(String telephone) {
-        def musee = Musee.findByTelephone(telephone)
-        listeFavoris.remove(musee)
+        listeFavoris.removeAll {it.telephone == telephone};
     }
 }
