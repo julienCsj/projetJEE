@@ -32,9 +32,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Accueil</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="/">Accueil</a></li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
@@ -62,6 +60,7 @@
                             <input type="hidden" id="index" name="index" value="${index}">
                             <input type="submit" class="btn btn-danger btn-sm pull-right" value="Supprimer" />
                         </g:form>
+                        <g:link class="btn btn-success btn-sm pull-right" controller="demandeVisiteMusee" action="getForm" id="${favoris.id}">Demande de visite</g:link>
                     </div>
                 </g:each>
             </div>

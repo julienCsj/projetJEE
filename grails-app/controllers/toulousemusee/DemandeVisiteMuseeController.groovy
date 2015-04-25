@@ -8,96 +8,43 @@ import grails.transaction.Transactional
 class DemandeVisiteMuseeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def demandeVisiteMuseeService
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond DemandeVisiteMusee.list(params), model: [demandeVisiteMuseeInstanceCount: DemandeVisiteMusee.count()]
+    def getForm() {
+        Musee musee = Musee.findById(params.int("id"))
+        render(view: 'form', model: [musee: musee])
     }
 
-    def show(DemandeVisiteMusee demandeVisiteMuseeInstance) {
-        respond demandeVisiteMuseeInstance
-    }
+    def doAjoutDemande() {
+        Integer idMusee = params.int("idMusee")
+        Date dateDebut = params.dateDebut
+        Date dateFin = params.dateFin
 
-    def create() {
-        respond new DemandeVisiteMusee(params)
-    }
+        Integer nbPersonne = params.int("nbPersonnes")
 
-    @Transactional
-    def save(DemandeVisiteMusee demandeVisiteMuseeInstance) {
-        if (demandeVisiteMuseeInstance == null) {
-            notFound()
-            return
-        }
+        Musee m = Musee.findById(idMusee)
+        DemandeVisite dv = new DemandeVisite(code: demandeVisiteMuseeService.genererCode(), dateDebutPeriode: dateDebut,
+        dateFinPeriode: dateFin, nbPersonnes: nbPersonne, statut: "En attente ...")
 
-        if (demandeVisiteMuseeInstance.hasErrors()) {
-            respond demandeVisiteMuseeInstance.errors, view: 'create'
-            return
-        }
+        print params
+        print "dateDebut : "+ dateDebut
+        print "dateFin : "+ dateFin
 
-        demandeVisiteMuseeInstance.save flush: true
+        dv.validate()
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'demandeVisiteMusee.label', default: 'DemandeVisiteMusee'), demandeVisiteMuseeInstance.id])
-                redirect demandeVisiteMuseeInstance
+        if (dv.hasErrors()) {
+            def message = []
+            if (dv.errors.hasFieldErrors("nbPersonnes")) {
+                message << "Les visites sont limités a 6 personnes."
             }
-            '*' { respond demandeVisiteMuseeInstance, [status: CREATED] }
-        }
-    }
 
-    def edit(DemandeVisiteMusee demandeVisiteMuseeInstance) {
-        respond demandeVisiteMuseeInstance
-    }
-
-    @Transactional
-    def update(DemandeVisiteMusee demandeVisiteMuseeInstance) {
-        if (demandeVisiteMuseeInstance == null) {
-            notFound()
-            return
-        }
-
-        if (demandeVisiteMuseeInstance.hasErrors()) {
-            respond demandeVisiteMuseeInstance.errors, view: 'edit'
-            return
-        }
-
-        demandeVisiteMuseeInstance.save flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'DemandeVisiteMusee.label', default: 'DemandeVisiteMusee'), demandeVisiteMuseeInstance.id])
-                redirect demandeVisiteMuseeInstance
-            }
-            '*' { respond demandeVisiteMuseeInstance, [status: OK] }
-        }
-    }
-
-    @Transactional
-    def delete(DemandeVisiteMusee demandeVisiteMuseeInstance) {
-
-        if (demandeVisiteMuseeInstance == null) {
-            notFound()
-            return
-        }
-
-        demandeVisiteMuseeInstance.delete flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'DemandeVisiteMusee.label', default: 'DemandeVisiteMusee'), demandeVisiteMuseeInstance.id])
-                redirect action: "index", method: "GET"
-            }
-            '*' { render status: NO_CONTENT }
-        }
-    }
-
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'demandeVisiteMusee.label', default: 'DemandeVisiteMusee'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*' { render status: NOT_FOUND }
+            print dv.errors
+            return render(view: 'form', model: [musee: m, dateDebut: dateDebut,
+                                                dateFin: dateFin, nbPersonnes: nbPersonne,
+                                                message : message])
+        } else {
+            def dvm = demandeVisiteMuseeService.ajouterDemandeVisiteMusee(m, dv)
+            return render(view: 'success', model: [dvm: dvm])
         }
     }
 }
