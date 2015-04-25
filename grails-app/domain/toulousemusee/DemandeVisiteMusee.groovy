@@ -8,4 +8,16 @@ class DemandeVisiteMusee {
 
     static constraints = {
     }
+
+
+    @Override
+    public String toString() {
+        return "DemandeVisiteMusee{" +
+                "id=" + id +
+                ", musee=" + musee +
+                ", demandeVisite=" + demandeVisite +
+                ", dateDemande=" + dateDemande +
+                ", version=" + version +
+                '}';
+    }
 }

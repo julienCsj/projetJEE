@@ -32,7 +32,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Accueil</a></li>
+                <li class=""><a href="/">Accueil</a></li>
+                <li class=""><g:link controller="demandeVisiteMusee" action="getFormStatut">Consulter mes demandes</g:link>
+                </li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

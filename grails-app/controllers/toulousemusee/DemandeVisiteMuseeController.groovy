@@ -13,11 +13,12 @@ class DemandeVisiteMuseeController {
     def demandeVisiteMuseeService
     def favorisService
 
-    def favorisList = favorisService.listeFavoris
 
 
     def getForm() {
         Musee musee = Musee.findById(params.int("id"))
+        def favorisList = favorisService.listeFavoris
+
         render(view: 'form', model: [musee: musee, favorisList: favorisList])
     }
 
@@ -27,11 +28,16 @@ class DemandeVisiteMuseeController {
         Date dateDebut = params.dateDebut
         Date dateFin = params.dateFin
 
+        print "*** DateDebut *** = "+dateDebut
+        print "*** DateFin *** = "+dateFin
+
         Integer nbPersonne = params.int("nbPersonnes")
 
         Musee m = Musee.findById(idMusee)
         DemandeVisite dv = new DemandeVisite(code: demandeVisiteMuseeService.genererCode(), dateDebutPeriode: dateDebut,
         dateFinPeriode: dateFin, nbPersonnes: nbPersonne, statut: DemandeVisite.Statut.EN_COURS)
+
+        def favorisList = favorisService.listeFavoris
 
         dv.validate()
 
@@ -53,10 +59,21 @@ class DemandeVisiteMuseeController {
     }
 
     def getFormStatut() {
-        return render(view: 'statut')
+        def favorisList = favorisService.listeFavoris
+        def listeDemande = DemandeVisiteMusee.list().unique { it.code }
+        return render(view: 'statut', model: [favorisList: favorisList, listeDemande: listeDemande])
     }
 
     def postFormStatut() {
-        def code = params.int("code");
+        def favorisList = favorisService.listeFavoris
+        Integer code = params.int("code");
+
+        def listDemande = demandeVisiteMuseeService.getDemandeVisiteMusee(code)
+        if(listDemande.size() != 1 || !code) {
+            return render(view: 'statut', model: [message: ["Ce code ne correspond a aucune demande ..."], favorisList: favorisList])
+        } else {
+            return render(view: 'infosDemande', model: [dvm: listDemande.get(0), favorisList: favorisList])
+        }
+
     }
 }

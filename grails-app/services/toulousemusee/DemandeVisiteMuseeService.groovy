@@ -12,10 +12,26 @@ class DemandeVisiteMuseeService {
         randomNum
     }
 
+
     def ajouterDemandeVisiteMusee(Musee m, DemandeVisite dv) {
-        dv.save(flush: true)
-        DemandeVisiteMusee dvm = new DemandeVisiteMusee(musee: m, demandeVisite: dv, date: new Date())
-        dvm.save(flush: true)
+        dv.save(flush: true, failOnError: true)
+        DemandeVisiteMusee dvm = new DemandeVisiteMusee(musee: m, demandeVisite: dv, dateDemande: new Date())
+        dvm.save(flush: true, failOnError: true)
         dvm
+    }
+
+    def getDemandeVisiteMusee(Integer code) {
+        if(!code) {
+            return []
+        } else {
+
+            def c = DemandeVisiteMusee.createCriteria()
+            def results = c.list {
+                demandeVisite {
+                    eq("code", code.intValue())
+                }
+            }
+            results
+        }
     }
 }
