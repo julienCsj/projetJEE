@@ -8,19 +8,21 @@ import grails.transaction.Transactional
 class DemandeVisiteMuseeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
     static scope = "prototype"
 
     def demandeVisiteMuseeService
     def favorisService
 
+    def favorisList = favorisService.listeFavoris
+
 
     def getForm() {
         Musee musee = Musee.findById(params.int("id"))
-        render(view: 'form', model: [musee: musee])
+        render(view: 'form', model: [musee: musee, favorisList: favorisList])
     }
 
     def doAjoutDemande() {
+
         Integer idMusee = params.int("idMusee")
         Date dateDebut = params.dateDebut
         Date dateFin = params.dateFin
@@ -42,10 +44,11 @@ class DemandeVisiteMuseeController {
             print dv.errors
             return render(view: 'form', model: [musee: m, dateDebut: dateDebut,
                                                 dateFin: dateFin, nbPersonnes: nbPersonne,
-                                                message : message])
+                                                message : message, favorisList: favorisList
+                    ])
         } else {
             def dvm = demandeVisiteMuseeService.ajouterDemandeVisiteMusee(m, dv)
-            return render(view: 'success', model: [dvm: dvm])
+            return render(view: 'success', model: [dvm: dvm, favorisList: favorisList])
         }
     }
 
