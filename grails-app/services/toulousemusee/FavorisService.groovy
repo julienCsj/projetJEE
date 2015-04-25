@@ -9,13 +9,13 @@ class FavorisService {
 
     def listeFavoris = new ArrayList<Musee>();
 
-    def ajouterAuxFavoris(Musee musee) {
+    def ajouterAuxFavoris(String telephone) {
+        def musee = Musee.findByTelephone(telephone)
         listeFavoris.contains(musee)?:listeFavoris.add(musee)
-        listeFavoris
     }
 
-    def retirerDesFavoris(Musee musee) {
-        listeFavoris.remove(listeFavoris.indexOf(musee))
-        listeFavoris
+    def retirerDesFavoris(String telephone) {
+        def musee = Musee.findByTelephone(telephone)
+        listeFavoris.remove(musee)
     }
 }

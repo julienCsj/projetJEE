@@ -10,10 +10,14 @@ class MuseeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def museeService
+    def favorisService
 
     def getSearchForm() {
         def codePostalList = Adresse.getAll()
-        render(view: 'index', model: [codePostalList: codePostalList])
+
+        def listeFavoris = favorisService.listeFavoris
+
+        render(view: 'index', model: [codePostalList: codePostalList, favorisList: listeFavoris])
     }
 
     def doSearchMusee() {
@@ -21,9 +25,13 @@ class MuseeController {
         Integer codePostal = Integer.getInteger(params.codePostal)
         String rue = params.rue
 
+
+        def listeFavoris = favorisService.listeFavoris
+
+
         def museeList = museeService.searchMusees(nom, codePostal, rue)
         render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size(),
-                                      nom: nom, codePostal: codePostal, rue: rue])
+                                      nom: nom, codePostal: codePostal, rue: rue, favorisList: listeFavoris])
     }
 
     def index(Integer max) {

@@ -1,30 +1,20 @@
 package toulousemusee
 
+import grails.converters.JSON
+
 class FavorisController {
 
     static scope = "prototype"
 
     def favorisService
 
-    def ajouterFavoris(Musee musee) {
-        /*if(session['favoris']) {
-            session['favoris'] = new ArrayList<Musee>(session['favoris'])
-        } else {
-            session['favoris'] = new ArrayList<Musee>()
-        }*/
-        favorisService.ajouterAuxFavoris(musee)
-
-        render(view: 'listeMusee', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()])
+    def ajouterFavoris = {
+        favorisService.ajouterAuxFavoris(params.telephone)
+        render (favorisService.listeFavoris as JSON)
     }
 
-    def supprimerFavoris(Musee musee) {
-        /*if(session['favoris']) {
-            session['favoris'] = new ArrayList<Musee>(session['favoris'])
-        } else {
-            session['favoris'] = new ArrayList<Musee>()
-        }*/
-        favorisService.retirerDesFavoris(musee)
-
-        render(view: 'listeMusee', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()])
+    def supprimerFavoris = {
+        favorisService.retirerDesFavoris(params.telephone)
+        render (favorisService.listeFavoris as JSON)
     }
 }

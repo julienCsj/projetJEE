@@ -40,11 +40,10 @@
                     <h4>${musee.nom}</h4>
                 </div>
                 <div class="col-xs-1 col-sm-1">
-                    <g:link controller="musee" action="ajouterFavoris"
-                            params="[musee:musee]">
-                        <button class="btn btn-success btn-sm pull-right">Ajouter aux favoris</button>
-                    </g:link>
-
+                    <g:formRemote name="favoris_form" url="[controller:'favoris', action:'ajouterFavoris']">
+                        <input type="hidden" id="telephone" name="telephone" value="${musee.telephone}" />
+                        <input type="submit" class="btn btn-success btn-sm pull-right" value="Ajouter aux favoris" />
+                    </g:formRemote>
                 </div>
 
             </div>
