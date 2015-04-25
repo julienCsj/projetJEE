@@ -52,7 +52,7 @@
             <h3>Musées préférés</h3>
         <div id="favoris" class="">
             <g:each var="musee" in="${favorisList.values()}">
-                <div class="well">
+                <div class="panel well" style="height: auto;">
                     ${musee.nom}
                     <g:form name="favoris_form" method="post" url="[controller:'musee', action:'supprimerFavoris']">
                         <input type="hidden" id="id" name="id" value="${musee.id}" />
@@ -63,6 +63,7 @@
                         <input type="submit" class="btn btn-danger btn-sm pull-right" value="Supprimer" />
                     </g:form>
                     <g:link class="btn btn-success btn-sm pull-right" controller="demandeVisiteMusee" action="getForm" id="${musee.id}">Demande de visite</g:link>
+                    <br/>
                 </div>
             </g:each>
         </div>

@@ -54,18 +54,18 @@
                 </div>
 
             </div>
-            <p>${musee.adresse}</p>
-            <p>${musee.horairesOuverture}</p>
+            <span><b>Adresse</b> : ${musee.adresse}</span><br>
+            <span><b>Ouverture</b> : ${musee.horairesOuverture}</span><br>
+            <span><b>Géré par</b> ${musee.gestionnaire}</span>
             <div class="row">
                 <div class="col-xs-4 col-sm-4">
-                    <span class="glyphicon glyphicon-phone" aria-hidden="true">${musee.telephone}</span>
-
+                    <span><b>Tél</b> : ${musee.telephone}</span>
                 </div>
                 <div class="col-xs-4 col-sm-4">
-                    <span class="glyphicons glyphicons-bus" aria-hidden="true">${musee.accesBus}</span>
+                    <span><b>Bus</b> : ${musee.accesBus}</span>
                 </div>
                 <div class="col-xs-4 col-sm-4">
-                    <span class="glyphicons glyphicons-train" aria-hidden="true">${musee.accesMetro}</span>
+                    <span><b>Metro</b> : ${musee.accesMetro}</span>
                 </div>
             </div>
         </div>
