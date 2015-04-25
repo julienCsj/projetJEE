@@ -17,8 +17,8 @@ class DemandeVisiteMuseeController {
 
     def doAjoutDemande() {
         Integer idMusee = params.int("idMusee")
-        Date dateDebut = params.date('dateDebut', 'dd-MM-yyyy')
-        Date dateFin = params.date('dateFin', 'dd-MM-yyyy')
+        Date dateDebut = params.dateDebut
+        Date dateFin = params.dateFin
 
         Integer nbPersonne = params.int("nbPersonnes")
 
