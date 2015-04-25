@@ -9,6 +9,6 @@ class DemandeVisite {
     String statut
 
     static constraints = {
-        nbPersonnes min:1, max:6
+        nbPersonnes range: 1..6
     }
 }

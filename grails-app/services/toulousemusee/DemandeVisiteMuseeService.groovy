@@ -13,11 +13,9 @@ class DemandeVisiteMuseeService {
     }
 
     def ajouterDemandeVisiteMusee(Musee m, DemandeVisite dv) {
+        dv.save(flush: true)
         DemandeVisiteMusee dvm = new DemandeVisiteMusee(musee: m, demandeVisite: dv, date: new Date())
-        if(dvm.hasErrors()) {
-            print "ERREUR !!!!!!!!!!!!!!!!!"
-        } else {
-            dvm.save(flush: true)
-        }
+        dvm.save(flush: true)
+        dvm
     }
 }
