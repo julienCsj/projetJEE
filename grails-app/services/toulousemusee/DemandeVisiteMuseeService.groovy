@@ -30,6 +30,7 @@ class DemandeVisiteMuseeService {
                 demandeVisite {
                     eq("code", code.intValue())
                 }
+                join 'musee'
             }
             results
         }
