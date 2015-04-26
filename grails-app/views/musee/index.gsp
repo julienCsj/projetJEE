@@ -44,12 +44,18 @@
                     <h4>${musee.nom}</h4>
                 </div>
                 <div class="col-xs-1 col-sm-1">
+
                     <g:form name="favoris_form" method="post" url="[controller:'musee', action:'ajouterFavoris']">
                         <input type="hidden" id="id" name="id" value="${musee.id}" />
                         <input type="hidden" id="nomF" name="nom" value="${nom}">
                         <input type="hidden" id="rueF" name="rue" value="${rue}">
                         <input type="hidden" id="codePostalF" name="codePostal" value="${codePostal}">
-                        <input type="submit" class="btn btn-success btn-sm pull-right <g:if test="${favorisList.keySet().contains(musee.id)}">disabled</g:if>" value="Ajouter aux favoris" />
+                        <g:if test="${favorisList.keySet().contains((int) musee.id).booleanValue()}">
+                            <input type="submit" class="btn btn-success btn-sm pull-right" value="Ajouter aux favoris" disabled />
+                        </g:if>
+                        <g:else>
+                            <input type="submit" class="btn btn-success btn-sm pull-right" value="Ajouter aux favoris" />
+                        </g:else>
                     </g:form>
                 </div>
 
