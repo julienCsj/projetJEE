@@ -7,9 +7,4 @@ class Gestionnaire {
     static constraints = {
 
     }
-
-    @Override
-    public String toString() {
-        return nom
-    }
 }

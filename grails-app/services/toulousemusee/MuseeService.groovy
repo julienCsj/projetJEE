@@ -28,6 +28,7 @@ class MuseeService {
                 like 'nom', "%${nom}%"
             }
             if (codePostal) {
+                join 'adresse'
                 adresse {
                     eq 'codePostal', codePostal
                 }

@@ -62,7 +62,7 @@
             </div>
             <span><b>Adresse</b> : ${musee.adresse.numero} ${musee.adresse.rue} ${musee.adresse.codePostal} ${musee.adresse.ville}</span><br>
             <span><b>Ouverture</b> : ${musee.horairesOuverture}</span><br>
-            <span><b>Géré par</b> ${musee.gestionnaire}</span>
+            <span><b>Géré par</b> ${musee.gestionnaire.nom}</span>
             <div class="row">
                 <div class="col-xs-4 col-sm-4">
                     <span><b>Tél</b> : ${musee.telephone}</span>

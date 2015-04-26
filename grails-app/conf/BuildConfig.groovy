@@ -77,4 +77,21 @@ grails.project.dependency.resolution = {
         //compile ":coffee-asset-pipeline:1.7.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
     }
+
+    //cobertura exclusions
+    coverage {
+        exclusions = [
+                '**/de/andreasschmitt/richui/taglib/renderer/**',
+                '**/plugins/richui-0.4/src/groovy/de/andreasschmitt/richui/**',
+                '**/de/andreasschmitt/richui/image/**',
+                '**/org/jsecurity/**',
+                '**/org/jsecurity/grails/**',
+                '**/JsecDbRealm*',
+                '**/*TagLib*/**',
+                "**/*Tests*",
+                '**/JsecAuthBase*',
+                '**/JsecurityFilters*',
+                '**/app/controllers/*',
+                '**/app/services/*']
+    }
 }
