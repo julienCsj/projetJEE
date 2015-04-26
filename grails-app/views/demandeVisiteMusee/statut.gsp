@@ -25,15 +25,6 @@
 
     </div>
 
-    <div class="well">
-        <h5>Pour tests : </h5>
-        <ul>
-        <g:each var="demande" in="${listeDemande}">
-            <li>${demande}</li>
-        </g:each>
-        </ul>
-    </div>
-
     <button type="submit" class="btn btn-default col-lg-3">Effectuer la demande</button>
 </g:form>
 </body>

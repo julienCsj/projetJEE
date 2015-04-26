@@ -37,6 +37,7 @@ class MuseeService {
                     like 'rue', "%${rue}%"
                 }
             }
+            join 'gestionnaire'
             order('nom')
         }
         res

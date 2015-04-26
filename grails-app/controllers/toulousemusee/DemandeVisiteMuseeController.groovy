@@ -18,7 +18,6 @@ class DemandeVisiteMuseeController {
     def getForm() {
         Musee musee = Musee.findById(params.int("id"))
         def favorisList = favorisService.listeFavoris
-
         render(view: 'form', model: [musee: musee, favorisList: favorisList])
     }
 
@@ -27,9 +26,6 @@ class DemandeVisiteMuseeController {
         Integer idMusee = params.int("idMusee")
         Date dateDebut = params.dateDebut
         Date dateFin = params.dateFin
-
-        print "*** DateDebut *** = "+dateDebut
-        print "*** DateFin *** = "+dateFin
 
         Integer nbPersonne = params.int("nbPersonnes")
 
@@ -47,7 +43,6 @@ class DemandeVisiteMuseeController {
                 message << "Les visites sont limités a 6 personnes."
             }
 
-            print dv.errors
             return render(view: 'form', model: [musee: m, dateDebut: dateDebut,
                                                 dateFin: dateFin, nbPersonnes: nbPersonne,
                                                 message : message, favorisList: favorisList
@@ -60,8 +55,7 @@ class DemandeVisiteMuseeController {
 
     def getFormStatut() {
         def favorisList = favorisService.listeFavoris
-        def listeDemande = DemandeVisiteMusee.list().unique { it.code }
-        return render(view: 'statut', model: [favorisList: favorisList, listeDemande: listeDemande])
+        return render(view: 'statut', model: [favorisList: favorisList])
     }
 
     def postFormStatut() {

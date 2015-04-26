@@ -24,14 +24,15 @@
 
     <div class="form-group">
         <label for="dateD">Date début période :</label>
-        <g:datePicker id="dateD" class="form-control" name="dateDebut" value="${new Date()}" precision="day"
+        <g:datePicker id="dateD" class="form-control" name="dateDebut" value="${dateDebut? dateDebut : new Date()}" precision="day"
                       noSelection="['':'-Choisir-']" relativeYears="[0..1]" />
     </div>
 
 
+
     <div class="form-group">
         <label for="dateF">Date fin période :</label>
-        <g:datePicker id="dateF" class="form-control" name="dateFin" value="${new Date()}" precision="day"
+        <g:datePicker id="dateF" class="form-control" name="dateFin" value="${dateFin? dateFin : new Date()}" precision="day"
                       noSelection="['':'-Choisir-']" relativeYears="[0..1]" />
     </div>
 
