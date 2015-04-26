@@ -28,11 +28,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Toulouse Musée</a>
+            <g:link class="navbar-brand" controller="musee" action="getSearchForm">Toulouse Musée</g:link>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class=""><a href="/">Accueil</a></li>
+                <li class=""><g:link controller="musee" action="getSearchForm">Accueil</g:link></li>
                 <li class=""><g:link controller="demandeVisiteMusee" action="getFormStatut">Consulter mes demandes</g:link>
                 </li>
             </ul>

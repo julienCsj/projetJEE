@@ -28,7 +28,6 @@ class MuseeService {
                 like 'nom', "%${nom}%"
             }
             if (codePostal) {
-                join 'adresse'
                 adresse {
                     eq 'codePostal', codePostal
                 }
@@ -38,7 +37,6 @@ class MuseeService {
                     like 'rue', "%${rue}%"
                 }
             }
-            join 'adresse'
             join 'gestionnaire'
             order('nom')
         }
