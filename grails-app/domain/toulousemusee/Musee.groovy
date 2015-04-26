@@ -4,6 +4,7 @@ import java.sql.Timestamp
 
 class Musee {
 
+    Timestamp version
     String nom
     String horairesOuverture
     String telephone

@@ -1,7 +1,10 @@
 package toulousemusee
 
+import java.sql.Timestamp
+
 class DemandeVisite {
 
+    Timestamp version
     int code
     Date dateDebutPeriode
     Date dateFinPeriode
