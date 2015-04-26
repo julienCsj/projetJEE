@@ -1,5 +1,7 @@
 package toulousemusee
 
+import java.sql.Timestamp
+
 class Musee {
 
     String nom
@@ -10,6 +12,11 @@ class Musee {
 
     Adresse adresse
     Gestionnaire gestionnaire
+
+    static mapping = {
+        adresse lazy: false
+        gestionnaire lazy: false
+    }
 
     static constraints = {
         telephone size: 10..14
